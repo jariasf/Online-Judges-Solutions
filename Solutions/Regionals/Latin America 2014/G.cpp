@@ -13,18 +13,17 @@
 
 using namespace std;
 #define MAX 50004
+#define pii pair<int ,int>
+#define mp make_pair
+#define pb push_back
+
 int V, x[ MAX ], y[ MAX ], numColor[ MAX ], color[ MAX ];
 bool used[ MAX ];
 vector<int> ady[ MAX ];
-map<int , map< int , int > > point;
+map< pii , int > point;
 
 long long dist( long long x1 , long long y1 , long long x2 , long long y2 ){
 	return ( x1 - x2 ) * ( x1 - x2 ) + ( y1 - y2 ) * ( y1 - y2 );
-}
-
-int MIN( int a , int b ){
-    if( a == 0 || b == 0 ) return 1;
-    return ( a < b )? a : b;
 }
 
 int bfs( int origen ){
@@ -50,25 +49,39 @@ int bfs( int origen ){
     return 1;
 }
 
+
+void preCalNeighbors(vector<pii> &d){
+    for( int i = -5 ; i <= 5 ; ++i ){
+        for( int j = -5 ; j <= 5 ; ++j ){
+            if( (i|j) && dist( 0, 0 , i , j ) <= 25 ){
+                d.pb( mp(i , j));
+            }
+        }
+    }
+}
+
 int main(){
+
+    vector<pii> d;
+    preCalNeighbors(d);
+
     while( scanf("%d" , &V ) != EOF ){
         point.clear();
         int idCoord = 0;
         for( int i = 0 ; i < V && scanf("%d %d" , &x[i] , &y[i] ) ; ++i){
-            point[ x[i] ][ y[i] ] = i;
+            point[ mp( x[i] , y[i] ) ] = i;
+            ady[ i ].clear();
         }
+
         memset( used , 0 , sizeof( used ) );
         for( int i = 0 ; i < V ; ++i ){
-            for( int _x = max( 0 ,x[i] - 5)  ; _x <= x[i] + 5 ; ++_x ){
-                for( int _y = max( 0 ,y[i] - 5) ; _y <= y[i] + 5 ; ++_y ){
-                    if( point[ _x ].find( _y ) != point[ _x ].end() ){
-                        int idPoint = point[ _x ][ _y ];
-                        if( _x == x[i] && _y == y[i] ||
-                            dist( x[i], y[i] , x[ idPoint ] , y[ idPoint ] ) > 25 )
-                            continue;
-                        ady[ i ].push_back( idPoint );
-                        used[ i ] = used[ idPoint ] = 1;
-                    }
+            for( int j = 0 ; j < d.size() ; ++j ){
+                int nx = x[i] + d[j].first;
+                int ny = y[i] + d[j].second;
+                if( point.find( mp( nx , ny ) ) != point.end() ){
+                    int idPoint = point[ mp( nx , ny ) ];
+                    ady[ i ].push_back( idPoint );
+                    used[ i ] = used[ idPoint ] = 1;
                 }
             }
         }
@@ -78,13 +91,10 @@ int main(){
         for( int i = 0 ; i < V ; ++i ){
             if( !used[ i ] || color[ i ] ) continue;
             bfs( i );
-            ans += MIN( numColor[ 1 ] , numColor[ 2 ] );
+            ans += min( numColor[ 1 ] , numColor[ 2 ] );
         }
         printf("%d\n" , ans );
-        for( int i = 0 ; i < V ; ++i ){
-            if( used[ i ])
-                ady[ i ].clear();
-        }
+
     }
     return 0;
 }
