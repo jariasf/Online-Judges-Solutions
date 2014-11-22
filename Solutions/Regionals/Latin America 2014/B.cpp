@@ -14,9 +14,9 @@ using namespace std;
 char s[ MAX ];
 
 int main(){
-    int A , B, len , b;
-    long long ans;
-    while( scanf("%d %d" , &A , &B ) != EOF ){
+    int len , b;
+    long long ans, A, B;
+    while( scanf("%lld %lld" , &A , &B ) != EOF ){
         scanf("%s" , s );
         len = strlen( s );
         ans = b = 0;
@@ -31,16 +31,7 @@ int main(){
 
         for( int i = len - 1 , k = 0 ; i >= b ; --i ){
             if( s[ i ] == 'B' ){
-                int index = w[k++];
-                if( index != -1 ){
-                    long long dif = ( A - B ) * (long long)( i - index );
-                    if( dif > A ){
-                        ans += A;
-                    }else{
-                        ans += dif;
-                    }
-                    swap( s[ index ] , s[ i ] );
-                }
+                ans += min( ( A - B ) * ( i - w[k++] ) , A );
             }
         }
         printf("%lld\n" , ans );
