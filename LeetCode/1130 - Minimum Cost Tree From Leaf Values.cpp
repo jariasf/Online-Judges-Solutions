@@ -1,6 +1,6 @@
 /*******************************************
  ***Problema: Minimum Cost Tree From Leaf Values
- ***ID: 5131
+ ***ID: 1130
  ***Juez: LeetCode
  ***Tipo: Greedy | DP
  ***Autor: Jhosimar George Arias Figueroa

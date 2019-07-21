@@ -1,6 +1,6 @@
 /*******************************************
  ***Problema: Number of Equivalent Domino Pairs
- ***ID: 5130
+ ***ID: 1128
  ***Juez: LeetCode
  ***Tipo: Hashing
  ***Autor: Jhosimar George Arias Figueroa
