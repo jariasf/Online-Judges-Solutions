@@ -8,29 +8,20 @@
 
 class Solution {
 public:
-    int minFlipsMonoIncr(string S) {
+
+    int minFlipsMonoIncr(string &S) {
+        S += "1";
         int n = S.size();
+        int zeros = 0, ones = 0;
+        for( int i = 0 ; i < n ; ++i )
+            zeros += (S[i] == '0');
         
-        vector<int> zeros(n);
-        for( int i = n - 1 ; i >= 0  ; --i ){
-            if( S[i] == '0' ){
-                if( i == n - 1 ) zeros[i] = 1;
-                else zeros[i] = zeros[i + 1] + 1;
-            }else{
-                if( i + 1 < n )
-                    zeros[i] = zeros[i + 1];
-            }
+        int min_flips = 1<<30;
+        for( int i = 0 ; i < n ; ++i ){
+            min_flips = min( min_flips, zeros + ones );
+            if( S[i] == '0') zeros--;
+            else ones++;
         }
-        
-        int result = zeros[0];
-        int sum = 0;
-        for( int i = 0 ;i < n ; ++i ){
-            if( S[i] == '1' ) sum++;
-            if( i + 1 < n )
-                result = min( result, sum + zeros[i + 1]);
-            else
-                result = min( result, sum);
-        }
-        return result;
+        return min_flips;
     }
 };
