@@ -1,6 +1,6 @@
 /*******************************************
  ***Problema: Perform String Shifts
- ***ID: Week2.8
+ ***ID: Week3.1
  ***Juez: LeetCode
  ***Tipo: Dynamic Programming
  ***Autor: Jhosimar George Arias Figueroa
