@@ -1,6 +1,6 @@
 /*******************************************
  ***Problema: Perform String Shifts
- ***ID: Week2.5
+ ***ID: Week2.7
  ***Juez: LeetCode
  ***Tipo: Ad hoc
  ***Autor: Jhosimar George Arias Figueroa

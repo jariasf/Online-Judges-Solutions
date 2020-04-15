@@ -1,6 +1,6 @@
 /*******************************************
  ***Problema: Last Stone Weight
- ***ID: Week2.5
+ ***ID: Week2.6
  ***Juez: LeetCode
  ***Tipo: Hashing
  ***Autor: Jhosimar George Arias Figueroa
