@@ -1,6 +1,6 @@
 /*******************************************
  ***Problema: First Unique Character in a String
- ***ID: Week1.5
+ ***ID: Week1.6
  ***Juez: LeetCode
  ***Tipo: Hashing | Boyer-Moore Voting Algorithm
  ***Autor: Jhosimar George Arias Figueroa
