@@ -1,6 +1,6 @@
 /*******************************************
  ***Problema: Shortest Distance to a Character
- ***ID: Week1.6
+ ***ID: Week1.7
  ***Juez: LeetCode
  ***Tipo: Ad hoc
  ***Autor: Jhosimar George Arias Figueroa
