@@ -27,15 +27,19 @@ public:
         vector<vector<int> > adj = vector<vector<int>>(26, vector<int>());
         for( int i = 0 ; i < n - 1 ; ++i ){
             int len = min(words[i].size(), words[i + 1].size());
+            bool invalid = true;
             for( int j = 0 ; j < len ; ++j ){
                 if( words[i][j] != words[i + 1][j]){
                     adj[ words[i][j] - 'a' ].push_back( words[i + 1][j] - 'a');
                     degree[ words[i + 1][j] - 'a']++;
+                    invalid = false;
                     break;
                 }
             }
+            if( invalid && words[i].size() > words[i + 1].size() ) 
+                return "";
         }
-        
+
         priority_queue<int, vector<int>, greater<int> > Q;
         for( int i = 0 ; i < 26 ; ++i ){
             if( degree[i] == 0 && seen[i] ){
